@@ -1,4 +1,4 @@
-# Modulized Flask Template
+# Modular Flask Template
 
 A lightweight Flask starter that is set up to be copied into a new project and renamed quickly.
 
