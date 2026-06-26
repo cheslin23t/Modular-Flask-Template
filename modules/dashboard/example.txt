@@ -1,0 +1,4 @@
+Module example
+
+Use this folder pattern for any authenticated or private area in your own project.
+Rename the folder, routes, and template references to match your app.

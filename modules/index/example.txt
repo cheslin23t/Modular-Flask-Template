@@ -1,0 +1,4 @@
+Home module example
+
+This folder holds the public landing page blueprint.
+Replace the default hero text in templates/index.html with your own project copy.

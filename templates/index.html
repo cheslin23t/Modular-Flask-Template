@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+
+{% include 'head.html' %}
+<style>
+  .hero-shell {
+      min-height: calc(100vh - 88px);
+      display: grid;
+      place-items: center;
+      padding: 3rem 1.5rem;
+  }
+
+  .hero-card {
+      max-width: 760px;
+      width: 100%;
+      padding: 3rem;
+      border-radius: 32px;
+      background: rgba(21, 23, 40, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(16px);
+      color: white;
+      text-align: left;
+  }
+
+  .hero-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.8rem;
+      color: #8fb7ff;
+      margin-bottom: 1rem;
+  }
+
+  .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 0.95;
+      font-weight: 700;
+      margin-bottom: 1rem;
+  }
+
+  .hero-copy {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      max-width: 58ch;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+  }
+
+  .start-section {
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 1rem;
+  }
+
+  .start-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+  }
+
+  .start-card {
+      padding: 1rem 1.1rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .start-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+  }
+
+  .start-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.6;
+  }
+
+  .hero-btn {
+      padding: 0.95rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+  }
+
+  .hero-btn-primary {
+      background: #f7f7fb;
+      color: #11131f;
+  }
+
+  .hero-btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+</style>
+<body data-bs-theme="dark">
+  
+    {% include 'navbar.html' %}
+<main class="hero-shell">
+  <section class="hero-card">
+    <div class="hero-kicker">Flask starter template</div>
+    <h1 class="hero-title">{{ application.name }}</h1>
+    <p class="hero-copy">A clean, modular starting point for a Flask app with blueprints, shared templates, and MySQL wiring already in place. Replace the defaults with your own routes, data, and branding.</p>
+    <div class="hero-actions">
+            <a class="hero-btn hero-btn-primary" href="#start">Get started</a>
+      <a class="hero-btn hero-btn-secondary" href="https://flask.palletsprojects.com/" target="_blank" rel="noreferrer">Flask docs</a>
+    </div>
+        <div class="start-section" id="start">
+            <div class="start-grid">
+                <div class="start-card">
+                    <h3>Rename the project</h3>
+                    <p>Update the application name, copy, and branding to match your own project.</p>
+                </div>
+                <div class="start-card">
+                    <h3>Add your modules</h3>
+                    <p>Duplicate a module folder, wire in routes, and keep shared helpers in modules/utils/.</p>
+                </div>
+                <div class="start-card">
+                    <h3>Connect your data</h3>
+                    <p>Swap the database settings or remove them if your project does not need MySQL.</p>
+                </div>
+            </div>
+        </div>
+  </section>
+</main>
+
+</body>

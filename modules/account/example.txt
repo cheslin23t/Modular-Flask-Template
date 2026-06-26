@@ -1,0 +1,4 @@
+Account module example
+
+Use this module for sign in, sign up, password resets, and logout routes.
+Keep account-specific validation and database queries here.

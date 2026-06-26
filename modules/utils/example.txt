@@ -1,0 +1,3 @@
+Utils module example
+
+Use this folder for shared helpers, database connectors, response helpers, and other code reused across modules.
