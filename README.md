@@ -1,71 +1,86 @@
 # Modular Flask Template
 
-A lightweight Flask starter that is set up to be copied into a new project and renamed quickly.
+This is the Flask starter I use when I want the first few pieces of an application separated by feature instead of collected in one large file. It includes a public page, account routes, a signed-in dashboard, shared database helpers, and a small amount of configuration for renaming the app.
 
-## Start Here
+It is intentionally modest: a starting point to copy and adapt, not a framework on top of Flask.
 
-1. Copy `.env.example` to `.env` and fill in your values.
-2. Install dependencies with `python -m pip install -r requirements.txt`.
-3. Run the app with `python app.py`.
+## Included
 
-## Template Settings
+- Feature folders built around Flask blueprints
+- Sign-up, login, logout, and dashboard routes
+- MySQL connection helper
+- Environment-based application name and database configuration
+- Shared HTML head and navbar templates
+- A `humanize` template filter for simple relative dates
+- Example files showing where new routes and utilities belong
 
-The app reads these environment values:
+## Structure
 
-- `flasksession` for the Flask secret key
-- `dbhost`, `dbuser`, `dbpassword`, and `database` for MySQL
-- `APPLICATION_NAME` for the site title and navbar brand
-
-## Module Layout
-
-Feature code lives in `modules/`. Each folder follows the same pattern so you can duplicate it for new areas of the app.
-
-Example folders include:
-
-- `modules/index/` for the public home page
-- `modules/account/` for authentication or account flows
-- `modules/utils/` for shared helpers like database access and JSON responses
-
-Use the plain-text examples in the module folders as a quick guide for adding your own feature areas.
-
-## Database Notes
-
-The app expects a `Users` table with these columns:
-
-- `Id`
-- `Username`
-- `Password`
-- `FirstName`
-- `LastName`
-- `Phone`
-- `RegistrationDate`
-
-If you want to create it manually, use:
-
-```sql
-CREATE DATABASE IF NOT EXISTS `database_name`;
-USE `database_name`;
-
-CREATE TABLE IF NOT EXISTS Users (
-  Id INT NOT NULL AUTO_INCREMENT,
-  Username VARCHAR(255) NOT NULL,
-  Password VARCHAR(255) NOT NULL,
-  FirstName VARCHAR(255) DEFAULT NULL,
-  LastName VARCHAR(255) DEFAULT NULL,
-  Phone VARCHAR(50) DEFAULT NULL,
-  RegistrationDate DATETIME NOT NULL,
-  PRIMARY KEY (Id),
-  UNIQUE KEY unique_username (Username)
-);
+```text
+app.py                 Application setup and blueprint registration
+modules/index/         Public home page
+modules/account/       Account routes
+modules/dashboard/     Signed-in dashboard
+modules/utils/         Database and response helpers
+templates/             Shared and page-specific templates
+static/                Styles and image assets
 ```
 
-## MySQL From Terminal
+## Getting started
+
+Create and activate a virtual environment, then install the pinned dependencies:
 
 ```bash
-set -a
-source .env
-set +a
-mysql -h "$dbhost" -u "$dbuser" -p"$dbpassword" "$database"
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
-If the database does not exist yet, connect without the database name first and create it with the SQL above.
+On Windows, activate the environment with `.venv\Scripts\activate`.
+
+Copy `.env.example` to `.env` and fill in the values:
+
+```text
+flasksession=your-session-secret
+dbhost=localhost
+dbuser=root
+dbpassword=your-database-password
+database=your-database-name
+APPLICATION_NAME=My Application
+```
+
+Then start the development server:
+
+```bash
+python app.py
+```
+
+The app listens on `http://localhost:8080`.
+
+## Database expectation
+
+The included account routes expect a `Users` table with these columns:
+
+```text
+Id
+Username
+Password
+FirstName
+LastName
+Phone
+RegistrationDate
+```
+
+`Username` should be unique, and `Id` should be the primary key.
+
+## Adding a feature
+
+Create a folder under `modules/` with an `index.py` that exposes a Flask blueprint, then add the module name to `active_routes` in `app.py`. The example text files in the existing module folders show the expected pattern.
+
+## Before using it in production
+
+This template is meant for learning and quick project setup. Its account flow is not a finished security system. Replace the password handling, validate inputs for your application, configure secure cookies and CSRF protection, add migrations, and review authorization before deploying anything based on it.
+
+## License
+
+The template is available under the license in `LICENSE`.
